@@ -1,0 +1,40 @@
+{% set name = "resfinder" %}
+{% set version = "4.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  skip: True # [osx]
+  number: 0
+
+source:
+  fn: {{ name|lower }}-{{ version }}.tar.gz
+  url: https://bitbucket.org/genomicepidemiology/{{ name|lower }}/get/{{ version }}.tar.gz
+  sha256: eecb3b11edda912c70a17de9e56cce78f7ba5f67f84ad86b83d2bbffa40c730b
+
+requirements:
+  build:
+  - perl-bioperl
+  - perl-data-dumper
+  - perl-getopt-long
+  - perl-file-temp
+
+  run:
+  - blast
+  - perl-bioperl
+  - perl-data-dumper
+  - perl-getopt-long
+  - perl-file-temp
+  
+test:
+  commands:
+    - 
+
+about:
+  home: https://bitbucket.org/genomicepidemiology/resfinder
+  license: 
+  license_file: 
+  summary: ResFinder identifies acquired antimicrobial resistance genes and/or find chromosomal mutations in total or partial sequenced isolates of bacteria.
+
