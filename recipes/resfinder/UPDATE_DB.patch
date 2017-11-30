@@ -1,0 +1,42 @@
+diff --git a/UPDATE_DB b/UPDATE_DB
+index 3b4f591..c3fa464 100755
+--- a/UPDATE_DB
++++ b/UPDATE_DB
+@@ -3,31 +3,16 @@
+ 
+ # Check if the user provided the input
+ if [ -z "$1" ]; then
+-   cwd=$(pwd)
+-   echo "Current path: "$cwd
+-   echo "Type the path to where the database is located, followed by [ENTER]:"
++   echo "Provide a path to or a name for the database, followed by [ENTER]:"
+    read path
+ else
+    path=$1
+ fi
+ 
+-# Check if the path is valid and existing
+-if [ -d $path ]; then
+-   cd $path
+-   #git stash
+-   git pull
++# Check if the path is valid and unexisting
++if [ ! -d $path ]; then
++   wget -qO- https://bitbucket.org/genomicepidemiology/resfinder_db/get/master.tar.gz | tar -xvz -C ${path%/*}
++    mv ${path%/*}/genomicepidemiology-resfinder_db-* $path
+ else
+-   echo "Error: path does not exist! Please provide a valid path..."
+-fi
+-
+-echo "Do you want to fix permissions, yes/y or no/n, followed by [ENTER]:"
+-read fix
+-if [[ $fix == "yes" ]] || [[ $fix == "y" ]]; then
+-   echo "enter group name followed by [ENTER]:"
+-   read gn
+-   if [ ! -z "$gn" ]; then
+-      chgrp -R $gn $path
+-   fi
+-   find $path \( -name .git \) -prune -printf '' -o -type d -print -exec chmod 775 {} \;
+-   find $path \( -name .git \) -prune -printf '' -o -type f -print -exec chmod 664 {} \;
++   echo "Error: path exists! Please provide a valid and unused path..."
+ fi

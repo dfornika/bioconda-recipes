@@ -1,0 +1,26 @@
+diff --git a/INSTALL_DB b/INSTALL_DB
+index 81a256f..c3fa464 100755
+--- a/INSTALL_DB
++++ b/INSTALL_DB
+@@ -11,19 +11,8 @@ fi
+ 
+ # Check if the path is valid and unexisting
+ if [ ! -d $path ]; then
+-   git clone git@bitbucket.org:genomicepidemiology/resfinder_db.git $path
++   wget -qO- https://bitbucket.org/genomicepidemiology/resfinder_db/get/master.tar.gz | tar -xvz -C ${path%/*}
++    mv ${path%/*}/genomicepidemiology-resfinder_db-* $path
+ else
+    echo "Error: path exists! Please provide a valid and unused path..."
+ fi
+-
+-echo "Do you want to fix permissions, yes/y or no/n, followed by [ENTER]:"
+-read fix
+-if [[ $fix == "yes" ]] || [[ $fix == "y" ]]; then
+-   echo "enter group name followed by [ENTER]:"
+-   read gn
+-   if [ ! -z "$gn" ]; then
+-      chgrp -R $gn $path
+-   fi
+-   find $path \( -name .git \) -prune -printf '' -o -type d -print -exec chmod 775 {} \;
+-   find $path \( -name .git \) -prune -printf '' -o -type f -print -exec chmod 664 {} \;
+-fi
