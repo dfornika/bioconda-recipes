@@ -26,6 +26,7 @@ requirements:
   - perl-file-temp
 
   run:
+  - python 2.7 
   - blast-legacy
   - perl-app-cpanminus
   - perl-bioperl
