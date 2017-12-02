@@ -1,5 +1,5 @@
 {% set name = "resfinder" %}
-{% set version = "master" %}
+{% set version = "2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ build:
 
 source:
   fn: {{ name|lower }}-{{ version }}.tar.gz
-  url: https://bitbucket.org/genomicepidemiology/{{ name|lower }}/get/{{ version }}.tar.gz
+  url: https://bitbucket.org/genomicepidemiology/{{ name|lower }}/get/master.tar.gz
   sha256: e00bb1e2c2bdf2121e1c3e6837ce023087224280d7c737c14f28ece6d80123d2
   patches:
     - INSTALL_DB.patch
@@ -24,7 +24,7 @@ requirements:
   - perl-data-dumper
   - perl-getopt-long
   - perl-file-temp
-
+  - perl-try-tiny-retry
   run:
   - python
   - blast-legacy
@@ -33,6 +33,7 @@ requirements:
   - perl-data-dumper
   - perl-getopt-long
   - perl-file-temp
+  - perl-try-tiny-retry
   
 test:
   commands:
