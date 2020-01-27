@@ -1,6 +1,6 @@
 {% set name = "grapetree" %}
-{% set version = "2.0" %}
-{% set sha256 = "1297ed728cc4c09ee3394bb38d8c3aef02511d878593f5d22192edf4ab077d5a" %}
+{% set version = "2.1" %}
+{% set sha256 = "b68985a2bdbe8353f9657ce3bd5b42be67c3c28e972d6fa390d12a0f19ff8b74" %}
 
 package:
     name: {{ name|lower }}
