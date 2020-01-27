@@ -1,0 +1,43 @@
+{% set name = "grapetree" %}
+{% set version = "2.0" %}
+{% set sha256 = "1297ed728cc4c09ee3394bb38d8c3aef02511d878593f5d22192edf4ab077d5a" %}
+
+package:
+    name: {{ name|lower }}
+    version: {{ version }}
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: '0'
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - click
+    - decorator
+    - flask
+    - itsdangerous
+    - jinja2
+    - markupsafe
+    - networkx
+    - numpy
+    - psutil
+    - werkzeug
+    - numba
+    - ete3
+
+test:
+    commands:
+        - grapetree -h
+
+about:
+    home: https://github.com/achtman-lab/GrapeTree
+    license: GPL-3.0
+    license_file: LICENSE
+    summary: A fully interactive tree visualization program, which supports facile manipulations of both tree layout and metadata.
