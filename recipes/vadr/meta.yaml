@@ -1,0 +1,36 @@
+{% set name = "vadr" %}
+{% set version = "1.1" %}
+{% set sha256 = "7316430001bbb0f373547d7bc0e4ff4af5d2c075481d32f403248850f1df009a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+build:
+  number: 0
+
+source:
+  url: https://github.com/nawrockie/{{ name }}/archive/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+requirements:
+  host:
+    - perl
+  run:
+    - perl
+
+test:
+  commands:
+    - v-annotate.pl --help
+
+about:
+  home: https://github.com/nawrockie/vadr
+  license: Public Domain
+  license_file: LICENSE
+  summary: Classification and annotation of viral sequences based on RefSeq annotation 
+  dev_url: https://github.com/nawrockie/vadr
+  doc_url: https://github.com/nawrockie/vadr/tree/master/documentation
+
+extra:
+  identifiers:
+    - doi:10.1101/852657
